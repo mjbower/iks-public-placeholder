@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.deployname }}-cm
+  namespace: default
+data:
+  CLUSTERNAME: aop-cdt-emea
+  THIS: this
+  THAT: that
+  TOTHER: the other

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.deployname }}
+  name: {{ .Values.deployname }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployname }}
+    spec:
+      containers:
+        - image: {{ .Values.image.repository }}
+          name: {{ .Values.deployname }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.deployname }}-cm
+      serviceAccountName: {{ .Values.deployname }}-sa
